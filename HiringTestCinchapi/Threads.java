@@ -26,7 +26,9 @@ public class Threads {
         a.start();
         b.start();
         c.start();
+        // Initiates the trigger to start all the threads
         startSignal.countDown();
+        // Wait until all threads the interrupted
         endSignal.await();
         System.out.println();
         System.out.println("Collection of thread A" + thread1.myList + "\n");
@@ -49,8 +51,7 @@ class MyThread implements Runnable
     {
         try 
         { 
-            //The thread keeps waiting till trigger
-            
+            //The thread keeps waiting until triggered            
             startSignal.await();         
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -63,8 +64,9 @@ class MyThread implements Runnable
             
         
         }
-        
+        // Thread interrupted
         Thread.currentThread().interrupt();
+        // Initiates the trigger to display all the collections
         endSignal.countDown();
         
         
