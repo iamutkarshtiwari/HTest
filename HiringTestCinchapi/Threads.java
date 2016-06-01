@@ -56,11 +56,13 @@ class MyThread implements Runnable
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("New value by " + Thread.currentThread().getName() + " is " + Threads.counter.get());
+        System.out.println("Thread " + Thread.currentThread().getName() + " has started...");
+        System.out.println();
         while (Threads.counter.get() < 100) {
             
-            myList.add(Threads.counter.incrementAndGet());
-            System.out.println("New value by " + Thread.currentThread().getName() + " is " + Threads.counter.get());
+            int countr = Threads.counter.incrementAndGet();
+            myList.add(countr);
+            System.out.println("New value by " + Thread.currentThread().getName() + " is " + countr);
             
         
         }
